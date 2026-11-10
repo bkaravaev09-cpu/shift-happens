@@ -1,0 +1,8 @@
+title: 1. dear friend
+hint: A/D - move, Space - jump. Mind the gaps.
+line: Dear friend,
+---
+
+ @
+                                                       *
+the summer was over  so we wrote  letters to each other  .

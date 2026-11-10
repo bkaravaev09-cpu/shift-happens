@@ -1,0 +1,9 @@
+.godot/
+build/
+*.tmp
+
+# Local AI-assistant workflow files (not part of the game)
+.clinerules/
+.clineignore
+docs/CLINE_GUIDE.md
+docs/TASKS.md

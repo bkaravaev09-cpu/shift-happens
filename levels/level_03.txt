@@ -1,0 +1,10 @@
+title: 3. small talk
+hint: Shift again - small letters fit where big ones cannot.
+line: small when the world was tight,
+---
+##################
+#@               #
+#oo====ooooooooo##
+###    ###########
+#ooooooooooooooo*#
+##################

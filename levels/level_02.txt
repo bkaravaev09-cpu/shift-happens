@@ -1,0 +1,9 @@
+title: 2. heavy words
+hint: Shift - become UPPERCASE. Big letters are heavy.
+line: this year I had to SHIFT a lot:
+---
+
+@
+oooooooo====oooooooo
+        # * #
+        #####

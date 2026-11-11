@@ -51,9 +51,10 @@ func _physics_process(delta: float) -> void:
 	match main.level_index:
 		0:
 			_hold("move_right", true)
-			var pit := false
-			for px in [114.0, 192.0, 330.0]: pit = pit or (x > px - 6 and x < px + 4)
-			_hold("jump", pit or (p.is_on_wall() and fmod(lvl_t, 0.4) < 0.33))
+			# Jump when there is no floor a few voxels ahead, or when blocked.
+			var ahead := p.global_transform.translated(Vector3(4, 0.5, 0))
+			var pit := p.is_on_floor() and not p.test_move(ahead, Vector3(0, -9, 0)) and x < 560
+			_hold("jump", pit or (p.is_on_wall() and absf(p.velocity.x) < 1.0 and fmod(lvl_t, 0.4) < 0.33))
 		1:
 			_hold("move_right", x < 62)
 			if x >= 62 and p.is_on_floor() and _once("s"): _tap("shift_case")
@@ -68,7 +69,13 @@ func _physics_process(delta: float) -> void:
 			if _once("caps"): _tap("caps_world")
 			_hold("move_right", true)
 			_hold("jump", p.is_on_wall() and fmod(lvl_t, 0.5) < 0.4)
-	if lvl_t > 25.0:
+		4:
+			if _once("c1"): _tap("caps_world")   # Caps ON - climb the capital ledge
+			_hold("move_right", true)
+			_hold("jump", p.is_on_wall() and fmod(lvl_t, 0.5) < 0.4)
+			if x > 48 and _once("c2"): _tap("caps_world")   # Caps OFF - fit the tunnel
+			if x > 72 and p.is_on_floor() and _once("gj"): _tap("jump")   # jump into the goal
+	if lvl_t > 60.0:
 		print("FAIL: stuck on level %d at %s upper=%s" % [main.level_index + 1, p.position, p.is_upper])
 		get_tree().quit(1)
 	if main.letter_lines.size() == main.LEVELS.size():

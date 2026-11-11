@@ -1,9 +1,9 @@
-title: 2. heavy words
-hint: Shift - become UPPERCASE. Big letters are heavy.
-line: this year I had to SHIFT a lot:
+title: 2. EAT ME
+hint: Shift - eat the cake and grow BIG. Big letters are heavy.
+line: She ate a little cake marked EAT ME, and grew, and grew.
 ---
 
 @
-oooooooo====oooooooo
+eat cake====and grow
         # * #
         #####

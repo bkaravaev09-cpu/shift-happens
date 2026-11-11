@@ -1,9 +1,9 @@
-title: 4. caps lock
-hint: Caps Lock (or Tab) - make the WHOLE WORLD uppercase.
-line: AND LOUD WHEN IT HAD TO BE.
+title: 4. The Queen's Croquet-Ground
+hint: Caps Lock (or Tab) - the Queen SHOUTS and the whole world turns UPPERCASE.
+line: "OFF WITH HER HEAD!" shouted the Queen of Hearts.
 ---
 #####################
 #               *   #
-#@            HIGHER#
-#ooooooooooooooooooo#
+#@            QUEEN!#
+#no, roses? nonsense#
 #####################

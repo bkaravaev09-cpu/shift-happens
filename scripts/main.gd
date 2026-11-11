@@ -6,6 +6,7 @@ const LEVELS: Array[String] = [
 	"res://levels/level_02.txt",
 	"res://levels/level_03.txt",
 	"res://levels/level_04.txt",
+	"res://levels/level_05.txt",
 ]
 const PAPER := Color("f1e6cf")
 
@@ -132,4 +133,4 @@ func _on_level_completed() -> void:
 		await get_tree().create_timer(1.2).timeout
 		_load_level(level_index + 1)
 	else:
-		hint_label.text = "\n".join(letter_lines) + "\n\nThe end. Thanks for playing!"
+		hint_label.text = "\n".join(letter_lines) + "\n\n...and then Alice woke up.\nIt had all been a curious dream.\n\nThe end. Thanks for playing!"

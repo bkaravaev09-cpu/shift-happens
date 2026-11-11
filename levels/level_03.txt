@@ -1,10 +1,10 @@
-title: 3. small talk
-hint: Shift again - small letters fit where big ones cannot.
-line: small when the world was tight,
+title: 3. Advice from a Caterpillar
+hint: Shift again - small letters slip through the smoke rings.
+line: "Who are YOU?" asked the Caterpillar, and she grew small again.
 ---
 ##################
 #@               #
-#oo====ooooooooo##
-###    ###########
+#Who====are YOU?##
+####    ##########
 #ooooooooooooooo*#
 ##################

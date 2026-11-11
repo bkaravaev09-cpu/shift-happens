@@ -1,8 +1,13 @@
-title: 1. dear friend
-hint: A/D - move, Space - jump. Mind the gaps.
-line: Dear friend,
+title: 1. Down the Rabbit-Hole
+hint: A/D - move, Space - jump. Follow the White Rabbit!
+line: Alice followed the White Rabbit down the rabbit-hole.
 ---
 
  @
-                                                       *
-the summer was over  so we wrote  letters to each other  .
+
+Alice was tired of sitting  by her sister  on the bank,  when a White Rabbit ran close  by her.
+
+
+
+                                                                                                  *
+                                                                                                 ###

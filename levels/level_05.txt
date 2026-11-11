@@ -1,0 +1,6 @@
+title: 5. Pool of Tears
+hint: Caps Lock (or Tab) - climb the capital ledge, then switch back to fit the tunnel.
+line: "Curiouser and curiouser!"
+---
+@CCCCCC# ###*
+cccccccbcccco

@@ -1,7 +1,20 @@
 # Shift Happens — GDD (1 page)
 
-**Pitch.** Cozy voxel puzzle-platformer. You are a letter restoring a scattered friendly
-letter. Every level brings back one line; the last screen shows the whole letter.
+**Pitch.** Cozy voxel puzzle-platformer through *Alice's Adventures in Wonderland*
+(Lewis Carroll, 1865 — public domain). You are a letter living inside the book. Levels are
+built from real lines of the text. Alice keeps changing size — so do you (Shift).
+
+**Story arc (one chapter per level, one story line restored per level):**
+1. Down the Rabbit-Hole — follow the White Rabbit, fall down the hole (movement).
+2. EAT ME — eat the cake, grow BIG, break through (Shift → UPPERCASE).
+3. Advice from a Caterpillar — "Who are YOU?", shrink through smoke rings (Shift back).
+4. The Queen's Croquet-Ground — the Queen SHOUTS, world turns UPPERCASE (Caps Lock).
+5+. Ideas: Pool of Tears (rising water of letters), Cheshire Cat (text fades, only grin
+   left), Mad Tea-Party ("Move down!" — shift seats), Trial ("a pack of cards!"), wake up.
+Final screen: all restored lines + "...and then Alice woke up."
+
+**Text rules:** quote only the original 1865 book text (public domain). No art, names or
+designs from film/game adaptations (Disney etc.).
 
 **Theme SHIFT, two keys:**
 - **Shift** — toggle the hero's case.

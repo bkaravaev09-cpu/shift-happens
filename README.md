@@ -19,7 +19,9 @@ Open the folder in Godot 4.5+ and press F5.
 Bot test: `godot --headless --path . res://tests/autoplay.tscn` → prints `ALL LEVELS DONE`.
 
 ## Levels
-Plain text files in `levels/`, format described at the top of `scripts/level.gd`.
+10 chapters from the book. Plain text files in `levels/`: format at the top of
+`scripts/level.gd`, special props (water, Cheshire grins, tea trays, cards) in
+`scripts/props.gd`.
 
 ## Credits
 - Code & design: <your name>

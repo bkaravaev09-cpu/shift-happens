@@ -1,0 +1,9 @@
+title: 9. Who Stole the Tarts?
+hint: Cards fall soon after you step on them - keep running!
+line: At the trial, the Queen cried: "Sentence first, verdict afterwards!"
+---
+
+ @
+
+                                           *
+Sentence first,+++++  +++++verdict afterwards.

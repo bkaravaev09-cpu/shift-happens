@@ -1,0 +1,10 @@
+title: 10. Alices Evidence
+hint: Everything at once: Caps up, run the cards, Caps down, then grow!
+line: "You're nothing but a pack of cards!" said Alice, grown to her full size.
+---
+
+ @
+                               ########
+               CARDS!++++++++++nonsense====##
+Who cares for you                     # * #
+                                      #####

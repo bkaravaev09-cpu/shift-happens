@@ -15,8 +15,11 @@
 ##   #  solid ink block (never changes)
 ##   =  fragile plank (breaks under the UPPERCASE hero)
 ##   @  player start     *  goal (missing ink drop)
+##   ~ % $ > : +  props, see scripts/props.gd (water, grins, tea trays, cards)
 class_name Level
 extends Node3D
+
+const NON_TEXT := ["#", "=", "@", "*", "_", "~", "%", "$", ">", ":", "+"]
 
 signal completed
 signal caps_changed(on: bool)
@@ -34,6 +37,8 @@ var spawn := Vector3.ZERO
 var bottom_y := 0.0
 
 var _cells: Array[Dictionary] = []  # {ch, col, row}
+var _water := {}  # Vector2i(col, row) -> true
+var _rows: Array[String] = []
 var _terrain: Node3D
 
 
@@ -56,6 +61,7 @@ func load_file(path: String) -> bool:
 			elif l.begins_with("line:"):
 				line = l.substr(5).strip_edges()
 			continue
+		_rows.append(l)
 		for col in l.length():
 			var ch := l[col]
 			if ch == " " and col > 0 and col < l.length() - 1 \
@@ -71,7 +77,13 @@ func load_file(path: String) -> bool:
 
 
 static func _is_text(ch: String) -> bool:
-	return ch != " " and ch not in ["#", "=", "@", "*", "_"]
+	return ch != " " and ch not in NON_TEXT
+
+
+## True if a world position is inside a water cell.
+func is_water(p: Vector3) -> bool:
+	var cell := Vector2i(floori(p.x / Voxel.CELL_W), floori(-p.y / Voxel.CELL_H))
+	return _water.has(cell)
 
 
 func toggle_caps() -> void:
@@ -97,6 +109,19 @@ func _build_static() -> void:
 				spawn = o + Vector3(3.0, -7.0, 0.0)
 			"*":
 				_add_goal(o)
+			"~":
+				_water[Vector2i(c.col, c.row)] = true
+			"%", "$":
+				var g := Props.Grin.new()
+				add_child(g)
+				g.setup(o, 0 if c.ch == "%" else 1)
+			"+":
+				var card := Props.Card.new()
+				add_child(card)
+				card.setup(o)
+			">":
+				_add_tray(c.col, c.row)
+	_build_water()
 	if not block_centers.is_empty():
 		add_child(Voxel.build_mesh(block_centers, BLOCK))
 
@@ -111,7 +136,7 @@ func _build_terrain() -> void:
 	var centers: Array[Vector3] = []
 	for c in _cells:
 		var ch: String = c.ch
-		if ch in ["#", "=", "@", "*"]:
+		if ch in NON_TEXT and ch != "_":
 			continue
 		if caps_on:
 			ch = ch.to_upper()
@@ -125,6 +150,34 @@ func _build_terrain() -> void:
 		Voxel.add_glyph_collision(body, ch, o)
 	if not centers.is_empty():
 		_terrain.add_child(Voxel.build_mesh(centers, INK))
+
+
+func _build_water() -> void:
+	for r in _rows.size():
+		var l := _rows[r]
+		var col := 0
+		while col < l.length():
+			if l[col] != "~":
+				col += 1
+				continue
+			var start := col
+			while col < l.length() and l[col] == "~":
+				col += 1
+			add_child(Props.water_mesh(Voxel.cell_origin(start, r), col - start))
+
+
+## Tray travels over the contiguous run of ':' / '>' cells in its row.
+func _add_tray(col: int, row: int) -> void:
+	var l := _rows[row]
+	var a := col
+	while a > 0 and l[a - 1] in [":", ">"]:
+		a -= 1
+	var b := col
+	while b < l.length() - 1 and l[b + 1] in [":", ">"]:
+		b += 1
+	var t := Props.Tray.new()
+	add_child(t)
+	t.setup(Voxel.cell_origin(col, row), a * Voxel.CELL_W, b * Voxel.CELL_W)
 
 
 func _add_plank(o: Vector3) -> void:

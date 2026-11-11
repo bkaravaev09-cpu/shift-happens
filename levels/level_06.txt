@@ -1,0 +1,13 @@
+title: 6. I Wish I Hadnt Cried So Much
+hint: Big letters sink, small letters float. Dive under the wall!
+line: "I wish I hadn't cried so much!" said Alice, swimming about.
+---
+
+@
+                    ######                    
+                    ######                  * 
+I wish I hadnt~~~~~~######~~~~~~cried so much!
+##############~~~~~~######~~~~~~##############
+##############~~~~~~~~~~~~~~~~~~##############
+##############~~~~~~~~~~~~~~~~~~##############
+              ##################              

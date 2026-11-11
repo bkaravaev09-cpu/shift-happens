@@ -7,6 +7,11 @@ const LEVELS: Array[String] = [
 	"res://levels/level_03.txt",
 	"res://levels/level_04.txt",
 	"res://levels/level_05.txt",
+	"res://levels/level_06.txt",
+	"res://levels/level_07.txt",
+	"res://levels/level_08.txt",
+	"res://levels/level_09.txt",
+	"res://levels/level_10.txt",
 ]
 const PAPER := Color("f1e6cf")
 
@@ -99,6 +104,7 @@ func _load_level(i: int) -> void:
 	level.load_file(LEVELS[i])
 	level.completed.connect(_on_level_completed)
 	player = Player.new()
+	player.level = level
 	add_child(player)
 	player.position = level.spawn
 	camera.position = _camera_target()
@@ -107,7 +113,7 @@ func _load_level(i: int) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if player == null or not is_instance_valid(player):
+	if player == null or not is_instance_valid(player) or _transitioning:
 		return
 	if Input.is_action_just_pressed("caps_world"):
 		level.toggle_caps()
@@ -127,6 +133,7 @@ func _on_level_completed() -> void:
 	if _transitioning:
 		return
 	_transitioning = true
+	player.set_physics_process(false)  # freeze the hero until the next level loads
 	letter_lines.append(level.line)
 	if level_index + 1 < LEVELS.size():
 		hint_label.text = "\"%s\"" % level.line

@@ -21,6 +21,8 @@ const H_LOWER := 4.8
 const H_UPPER := 6.8
 
 var is_upper := false
+var level: Level  # set by main; used for water checks
+var in_water := false
 var _shape: BoxShape3D
 var _collider: CollisionShape3D
 var _visual: Node3D
@@ -37,7 +39,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
+	in_water = level != null and level.is_water(global_position + Vector3(0, 2.0, 0))
+	if in_water:
+		_water_physics(delta)
+	elif not is_on_floor():
 		velocity.y -= gravity * delta
 		_coyote -= delta
 	else:
@@ -46,7 +51,10 @@ func _physics_process(delta: float) -> void:
 	_buffer -= delta
 	if Input.is_action_just_pressed("jump"):
 		_buffer = jump_buffer
-	if _buffer > 0.0 and _coyote > 0.0:
+	if in_water and not is_upper and _buffer > 0.0:
+		velocity.y = sqrt(2.0 * gravity * 8.0)  # swim stroke / leap out of the water
+		_buffer = 0.0
+	elif _buffer > 0.0 and _coyote > 0.0:
 		var h := jump_height_upper if is_upper else jump_height_lower
 		velocity.y = sqrt(2.0 * gravity * h)
 		_buffer = 0.0
@@ -55,7 +63,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y *= 0.5  # variable jump height
 
 	var dir := Input.get_axis("move_left", "move_right")
-	velocity.x = move_toward(velocity.x, dir * run_speed, accel * delta)
+	var spd := run_speed * (0.6 if in_water else 1.0)
+	velocity.x = move_toward(velocity.x, dir * spd, accel * delta)
 	velocity.z = 0.0
 
 	if Input.is_action_just_pressed("shift_case"):
@@ -67,10 +76,18 @@ func _physics_process(delta: float) -> void:
 	_check_fragile()
 
 
+## Pool of Tears: lowercase floats up to the surface, UPPERCASE sinks slowly.
+func _water_physics(delta: float) -> void:
+	_coyote = coyote_time if is_upper and is_on_floor() else 0.0
+	# Strong drag: no deep dives from falling in, no rocket rises.
+	var target := -18.0 if is_upper else 14.0
+	velocity.y = move_toward(velocity.y, target, gravity * 2.5 * delta)
+
+
 ## Walks up ledges lower than step_height instead of stopping at them.
 func _try_step(dir: float) -> void:
-	if is_zero_approx(dir) or not is_on_floor():
-		return
+	if is_zero_approx(dir) or not is_on_floor() or velocity.y > 0.1:
+		return  # never combine a step-up with a jump (would add 4.5 to jump height)
 	var fwd := Vector3(signf(dir) * 0.8, 0, 0)
 	if not test_move(global_transform, fwd):
 		return
@@ -108,15 +125,20 @@ func _apply_case() -> void:
 	add_child(_visual)
 
 
-## Heavy (uppercase) hero breaks fragile planks it stands on.
+## Reacts to what the hero stands on: UPPERCASE breaks planks, any case tips cards.
 func _check_fragile() -> void:
-	if not is_upper:
+	if not is_on_floor():
 		return
-	for i in get_slide_collision_count():
-		var col := get_slide_collision(i)
-		var body := col.get_collider() as Node
-		if body and body.is_in_group("fragile") and col.get_normal().y > 0.7:
-			body.queue_free()
+	var hit := move_and_collide(Vector3(0, -0.2, 0), true)
+	if hit == null:
+		return
+	var body := hit.get_collider() as Node
+	if body == null:
+		return
+	if is_upper and body.is_in_group("fragile"):
+		body.queue_free()
+	elif body.is_in_group("card"):
+		body.call("touch")
 
 
 func _bump() -> void:

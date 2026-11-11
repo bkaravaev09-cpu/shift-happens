@@ -1,6 +1,11 @@
-title: 5. Pool of Tears
-hint: Caps Lock (or Tab) - climb the capital ledge, then switch back to fit the tunnel.
-line: "Curiouser and curiouser!"
+title: 5. The Pool of Tears
+hint: Small letters float. Swim across - Space to paddle.
+line: She cried so much that she had to swim in her own tears.
 ---
-@CCCCCC# ###*
-cccccccbcccco
+
+ @
+                                           *
+Curiouser and curiouser!~~~~~~~~~~cried Alice.
+########################~~~~~~~~~~############
+                        ~~~~~~~~~~
+                        ##########

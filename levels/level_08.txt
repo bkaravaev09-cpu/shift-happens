@@ -1,0 +1,9 @@
+title: 8. A Mad Tea-Party
+hint: "Move one place on!" Ride the tea trays across the table.
+line: At the Mad Tea-Party everyone kept moving one place on.
+---
+
+ @
+
+                                                   *
+Take some more tea >::::::: :::::::> No room! No room!

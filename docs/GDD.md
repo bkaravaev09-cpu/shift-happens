@@ -4,13 +4,17 @@
 (Lewis Carroll, 1865 — public domain). You are a letter living inside the book. Levels are
 built from real lines of the text. Alice keeps changing size — so do you (Shift).
 
-**Story arc (one chapter per level, one story line restored per level):**
-1. Down the Rabbit-Hole — follow the White Rabbit, fall down the hole (movement).
-2. EAT ME — eat the cake, grow BIG, break through (Shift → UPPERCASE).
-3. Advice from a Caterpillar — "Who are YOU?", shrink through smoke rings (Shift back).
-4. The Queen's Croquet-Ground — the Queen SHOUTS, world turns UPPERCASE (Caps Lock).
-5+. Ideas: Pool of Tears (rising water of letters), Cheshire Cat (text fades, only grin
-   left), Mad Tea-Party ("Move down!" — shift seats), Trial ("a pack of cards!"), wake up.
+**Story arc (10 levels, one chapter each, one story line restored per level):**
+1. Down the Rabbit-Hole — movement, pits, fall down the hole.
+2. EAT ME — Shift → UPPERCASE, heavy letters break `=` planks.
+3. Advice from a Caterpillar — Shift back, slip through smoke rings (tunnel).
+4. The Queen's Croquet-Ground — Caps Lock raises the world to reach a ledge.
+5. The Pool of Tears — water `~`: lowercase floats/swims.
+6. I Wish I Hadn't Cried So Much — UPPERCASE sinks: dive under a wall, shrink to float up.
+7. The Cheshire Cat — grins `%` `$` fade in turns: rhythm jumps.
+8. A Mad Tea-Party — tea trays `>` ride along `:` tracks.
+9. Who Stole the Tarts? — cards `+` fall after you step on them.
+10. Alice's Evidence — finale: Caps up, card run, Caps down, grow to break through.
 Final screen: all restored lines + "...and then Alice woke up."
 
 **Text rules:** quote only the original 1865 book text (public domain). No art, names or
